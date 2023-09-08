@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+"""function for determine the fewest operations needed"""
+
 def minOperations(n):
    l = 1
    phrase = 0
