@@ -18,8 +18,4 @@ def minOperations(n):
       count += 1
 
    return count
-
-
-
-      
-    
+  
