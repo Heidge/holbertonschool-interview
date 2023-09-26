@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Module for parse log"""
+
 import random
 import sys
 import signal
@@ -19,11 +21,3 @@ for line in sys.stdin:
         print("File size: {}".format(file_size))
         for key, value in status_codes.items():
             print(key + ": " + str(value))
-
-
-
-
-    #total_size =
-    #if signal.SIGINT | linenb % 10 == 0:
-        #print(f'File size: {linenb}')
-    #linenb + 1
