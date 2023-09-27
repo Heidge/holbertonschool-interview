@@ -28,6 +28,7 @@ try:
                         print("{}: {}".format(key, status_codes[key]))
             nbline = nbline + 1
         else:
+            file_size += int(line.split('"')[2].split()[1])
             pass
 except KeyboardInterrupt:
     pass
