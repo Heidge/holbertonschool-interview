@@ -19,9 +19,9 @@ try:
                 status_codes[key] = value + 1
         if nbline % 10 == 0 and nbline != 0:
             print("File size: {}".format(file_size))
-            for key, value in status_codes.items():
-                if value > 0:
-                    print(key + ": " + str(value))
+            for key in sorted(status_codes.keys()):
+                if status_codes[key] > 0:
+                    print("{}: {}".format(key, status_codes[key]))
         nbline = nbline + 1
 except KeyboardInterrupt:
     print("File size: {}".format(file_size))
