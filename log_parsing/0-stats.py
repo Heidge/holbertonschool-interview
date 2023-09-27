@@ -4,12 +4,10 @@
 import sys
 import fileinput
 
-
 status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0,
                 "405": 0, "500": 0}
 file_size = 0
 nbline = 1
-
 
 try:
     for line in fileinput.input():
@@ -17,6 +15,10 @@ try:
         check_nb = len(check_format)
         if check_nb == 7:
             file_size += 1000
+            status_code = line.split('"')[2].split()[0]
+            for key, value in status_codes.items():
+                if status_code == key:
+                    status_codes[key] = value + 1
         elif check_nb == 9:
             status_code = line.split('"')[2].split()[0]
             file_size += int(line.split('"')[2].split()[1])
