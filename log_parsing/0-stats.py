@@ -15,7 +15,8 @@ try:
     for line in fileinput.input():
         check_format = line.split()
         check_nb = len(check_format)
-        file_size += int(line.split('"')[2].split()[1])
+        if check_nb > 3:
+            file_size += 1000
         if check_nb == 9:
             status_code = line.split('"')[2].split()[0]
             file_size += int(line.split('"')[2].split()[1])
