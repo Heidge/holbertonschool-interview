@@ -4,9 +4,11 @@
 import sys
 import fileinput
 
+
 status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
 file_size = 0
 nbline = 1
+
 
 try:
     for line in fileinput.input():
