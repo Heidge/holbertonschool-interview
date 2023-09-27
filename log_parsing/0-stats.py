@@ -4,33 +4,33 @@
 import sys
 import signal
 import fileinput
-import os
 
-status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
-file_size = 0
-nbline = 1
 
-os.chmod("0-stats.py", 0o755)
-os.chmod("0-generator.py", 0o755)
+def parse_log():
+    status_codes = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+    file_size = 0
+    nbline = 1
 
-try:
-    for line in fileinput.input():
-        status_code = line.split('"')[2].split()[0]
-        file_size += int(line.split('"')[2].split()[1])
-        for key, value in status_codes.items():
-            if status_code == key:
-                status_codes[key] = value + 1
-        if nbline % 10 == 0 and nbline != 0:            
-            print("File size: {}".format(file_size))
+    try:
+        for line in fileinput.input():
+            status_code = line.split('"')[2].split()[0]
+            file_size += int(line.split('"')[2].split()[1])
             for key, value in status_codes.items():
-                print(key + ": " + str(value))
-        nbline = nbline + 1
-except KeyboardInterrupt:
+                if status_code == key:
+                    status_codes[key] = value + 1
+            if nbline % 10 == 0 and nbline != 0:            
+                print("File size: {}".format(file_size))
+                for key, value in status_codes.items():
+                    print(key + ": " + str(value))
+            nbline = nbline + 1
+    except KeyboardInterrupt:
+        pass
     print("File size: {}".format(file_size))
     for key, value in status_codes.items():
         print(key + ": " + str(value))
     
-
+if __name__ == "__main__":
+    parse_log()
 
 
 
