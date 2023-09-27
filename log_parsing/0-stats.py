@@ -13,17 +13,22 @@ nbline = 1
 
 try:
     for line in fileinput.input():
-        status_code = line.split('"')[2].split()[0]
-        file_size += int(line.split('"')[2].split()[1])
-        for key, value in status_codes.items():
-            if status_code == key:
-                status_codes[key] = value + 1
-        if nbline % 10 == 0 and nbline != 0:
-            print("File size: {}".format(file_size))
-            for key in sorted(status_codes.keys()):
-                if status_codes[key] > 0:
-                    print("{}: {}".format(key, status_codes[key]))
-        nbline = nbline + 1
+        check_format = line.split()
+        check_nb = len(check_format)
+        if check_nb == 9:
+            status_code = line.split('"')[2].split()[0]
+            file_size += int(line.split('"')[2].split()[1])
+            for key, value in status_codes.items():
+                if status_code == key:
+                    status_codes[key] = value + 1
+            if nbline % 10 == 0 and nbline != 0:
+                print("File size: {}".format(file_size))
+                for key in sorted(status_codes.keys()):
+                    if status_codes[key] > 0:
+                        print("{}: {}".format(key, status_codes[key]))
+            nbline = nbline + 1
+        else:
+            pass
 except KeyboardInterrupt:
     pass
 print("File size: {}".format(file_size))
