@@ -24,6 +24,8 @@ try:
                     print("{}: {}".format(key, status_codes[key]))
         nbline = nbline + 1
 except KeyboardInterrupt:
-    print("File size: {}".format(file_size))
-    for key, value in status_codes.items():
-        print(key + ": " + str(value))
+    pass
+print("File size: {}".format(file_size))
+for key in sorted(status_codes.keys()):
+    if status_codes[key] > 0:
+        print("{}: {}".format(key, status_codes[key]))
