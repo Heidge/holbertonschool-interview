@@ -28,7 +28,6 @@ try:
                         print("{}: {}".format(key, status_codes[key]))
             nbline = nbline + 1
         else:
-            file_size += 1000
             pass
 except KeyboardInterrupt:
     pass
