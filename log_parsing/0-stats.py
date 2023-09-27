@@ -17,13 +17,13 @@ try:
         for key, value in status_codes.items():
             if status_code == key:
                 status_codes[key] = value + 1
-        if nbline % 10 == 0 and nbline != 0:            
+        if nbline % 10 == 0 and nbline != 0:
             print("File size: {}".format(file_size))
             for key, value in status_codes.items():
-                print(key + ": " + str(value))
+                if value > 0:
+                    print(key + ": " + str(value))
         nbline = nbline + 1
 except KeyboardInterrupt:
     print("File size: {}".format(file_size))
     for key, value in status_codes.items():
         print(key + ": " + str(value))
- 
