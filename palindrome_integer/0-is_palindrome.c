@@ -1,7 +1,7 @@
 int is_palindrome(unsigned long n)
 {
-	unsigned int nb = n;
-	unsigned int inverse = 0;
+	unsigned long nb = n;
+	unsigned long inverse = 0;
 
     while (nb > 0) {
         inverse = inverse * 10 + nb % 10;
