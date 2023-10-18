@@ -5,25 +5,35 @@ Function for utf8 validation
 
 
 def validUTF8(data):
-    num_bytes = 0
 
-    for num in data:
-        if num >= 128:
-            if num_bytes == 0:
-                if (num >> 5) == 0b110:
-                    num_bytes = 1
-                elif (num >> 4) == 0b1110:
-                    num_bytes = 2
-                elif (num >> 3) == 0b11110:
-                    num_bytes = 3
-                else:
-                    return False
-            else:
-                if (num >> 6) != 0b10:
-                    return False
-                num_bytes -= 1
-        else:
-            if num_bytes != 0:
-                return False
+	dataL = len(data)
+	binary_data = []
+	count = 0
+	i = 1
+	
+	for num in data:
+		binary_string = bin(num)
+		binary_data.append(binary_string[2:])
 
-    return True
+	print(binary_data)
+	if binary_data[0][:5] == "11111":
+		return False
+
+	first_string = str(binary_data[0][:4])
+
+	for char in first_string:
+		if char == '1':
+			count += 1
+	
+	for binary_num in binary_data:
+		if i == count:
+			break
+		else:
+			if binary_num[i][:2] == "10" or binary_num[i][:1] == "0":
+				continue
+				i += 1
+			else:
+				return False
+
+	return True
+ 
