@@ -3,9 +3,10 @@
 Function for utf8 validation
 """
 
+
 def validUTF8(data):
     num_bytes = 0
-    
+
     for num in data:
         if num >= 128:
             if num_bytes == 0:
@@ -24,5 +25,5 @@ def validUTF8(data):
         else:
             if num_bytes != 0:
                 return False
-    
+
     return True
