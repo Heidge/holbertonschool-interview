@@ -35,37 +35,3 @@ def validUTF8(data):
                                 return False
                 index += 1
     return True
-
-
-def check_after(binary_num):
-    count = 0
-    for char in binary_num[1:4]:
-        if char == "1":
-            count += 1
-        else:
-            break
-    return count
-
-
-def check_bit_too_large(binary_num):
-    count = 0
-    for char in binary_num:
-        count += 1
-    if count > 8:
-        return True
-    return False
-    # couper si supérieur à 8
-
-
-def check_bit_small(binary_num):
-    count = 0
-    for char in binary_num:
-        count += 1
-    if count < 8:
-        return True
-    return False
-
-
-def check_size(binary_num):
-    if binary_num[:5] == "11111":
-        return True
