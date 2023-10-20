@@ -47,4 +47,13 @@ def check_after(binary_num):
     return count
 
 
+def check_bit_too_large(binary_num):
+    count = 0
+    for char in binary_num:
+        count += 1
+    if count > 8:
+        return True
+    return False
+    # couper si supérieur à 8
+
 
