@@ -13,9 +13,6 @@ def validUTF8(data):
 		binary_string = bin(num)
 		binary_data.append(binary_string[2:])
 
-	print(binary_data)
-	print(binary_data[0][1:4])
-
 	for binary_num in binary_data:
 			if check_bit_too_large(binary_num) or check_size(binary_num):
 				return False
