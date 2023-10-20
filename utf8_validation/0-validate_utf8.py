@@ -17,14 +17,22 @@ def validUTF8(data):
 	print(binary_data[0][1:4])
 
 	for binary_num in binary_data:
-			if check_bit(binary_num) or check_size(binary_num):
+			if check_bit_too_large(binary_num) or check_size(binary_num):
 				return False
 			else:
-				if binary_num[0] == 0:
+				if check_bit_small(binary_num):
 					continue
 				else:
 					count = check_after(binary_num)
-					
+					for x in binary_data:
+						if x == binary_num:
+							for x in range(count):
+								x += 1
+								if binary_data[index + x][:2] == "10":
+									continue
+								else:
+									return False
+					index += 1
 	return True
  
 def check_after(binary_num):
@@ -36,7 +44,7 @@ def check_after(binary_num):
 			break
 	return count
 
-def check_bit(binary_num):
+def check_bit_too_large(binary_num):
 	count = 0
 	for char in binary_num:
 		count += 1
@@ -44,6 +52,14 @@ def check_bit(binary_num):
 		return True
 	return False
 	#couper si supérieur à 8
+
+def check_bit_small(binary_num):
+	count = 0
+	for char in binary_num:
+		count += 1
+	if count < 8:
+		return True
+	return False
 
 def check_size(binary_num):
 	if binary_num[:5] == "11111":
