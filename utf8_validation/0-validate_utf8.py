@@ -26,8 +26,6 @@ def validUTF8(data):
                     if x == binary_num:
                         for z in range(count):
                             z += 1
-                            if z > rest:
-                                break
                             if binary_data[index + z][:2] == "10":
                                 continue
                             else:
