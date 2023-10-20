@@ -54,6 +54,5 @@ def check_bit_too_large(binary_num):
     if count > 8:
         return True
     return False
-    # couper si supérieur à 8
 
 
