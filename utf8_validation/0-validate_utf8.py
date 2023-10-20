@@ -7,7 +7,7 @@ Function for utf8 validation
 def validUTF8(data):
     data_len = len(data)
     binary_data = []
-    index = 1
+    index = 0
 
     for num in data:
         binary_string = bin(num)
