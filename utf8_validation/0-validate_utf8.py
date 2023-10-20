@@ -31,7 +31,7 @@ def validUTF8(data):
                             if binary_data[index + z][:2] == "10":
                                 continue
                             else:
-                                return False                          
+                                return False                       
                 index += 1
     return True
 
