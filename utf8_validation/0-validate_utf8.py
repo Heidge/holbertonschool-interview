@@ -35,3 +35,16 @@ def validUTF8(data):
                                 return False
                 index += 1
     return True
+
+
+def check_after(binary_num):
+    count = 0
+    for char in binary_num[1:4]:
+        if char == "1":
+            count += 1
+        else:
+            break
+    return count
+
+
+
