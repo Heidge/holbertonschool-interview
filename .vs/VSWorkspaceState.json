@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\utf8_validation"
   ],
-  "SelectedNode": "\\C:\\Users\\axelg\\Documents\\Dev\\Holberton\\holbertonschool-interview",
+  "SelectedNode": "\\utf8_validation\\0-validate_utf8.py",
   "PreviewInSolutionExplorer": false
 }
