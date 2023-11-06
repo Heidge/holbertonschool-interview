@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\utf8_validation"
+    "\\sandpiles",
+    "\\slide_line"
   ],
-  "SelectedNode": "\\utf8_validation\\0-validate_utf8.py",
+  "SelectedNode": "\\slide_line\\slide_line.h",
   "PreviewInSolutionExplorer": false
 }
