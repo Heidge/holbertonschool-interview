@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import sys
 
 # Function to check if placing a queen at a specific position is safe
