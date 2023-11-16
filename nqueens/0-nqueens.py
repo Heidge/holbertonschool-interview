@@ -3,6 +3,8 @@
 import sys
 
 # Function to check if placing a queen at a specific position is safe
+
+
 def is_safe(board, row, col, n):
     # Check if there is a queen in the same column or along diagonals
     for i in range(row):
@@ -13,6 +15,8 @@ def is_safe(board, row, col, n):
     return True
 
 # Recursive function to solve the N-Queens problem
+
+
 def solve_nqueens(board, row, n, solutions):
     # If all queens are placed, add the solution to the list
     if row == n:
@@ -25,6 +29,8 @@ def solve_nqueens(board, row, n, solutions):
             solve_nqueens(board, row + 1, n, solutions)
 
 # Main function to initialize the N-Queens solver
+
+
 def nqueens_solver(n):
     # Check if the input is a valid integer
     if not n.isdigit():
