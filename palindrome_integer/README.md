@@ -1,4 +1,4 @@
-# Linked list cycle
+# Palindrome integer
 
 ## Tasks
 

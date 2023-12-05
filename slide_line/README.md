@@ -1,4 +1,4 @@
-# Sandpiles
+# 2048 (single line)
 
 ## Tasks
 
