@@ -8,9 +8,9 @@
  * @value: Int
  * Return: The node
  */
-skiplist_t* linear_skip(skiplist_t* list, int value)
+skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-	skiplist_t* save = list, * temp;
+	skiplist_t *save = list, *temp;
 
 	if (!list)
 		return (NULL);
