@@ -8,9 +8,9 @@
  * Return: Root of the tree
  */
 
-avl_t* sorted_array_to_avl(int* array, size_t size)
+avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	avl_t* node = NULL, * left = NULL, * right = NULL;
+	avl_t *node = NULL, *left = NULL, *right = NULL;
 	size_t i;
 
 	if (!array)
@@ -44,9 +44,9 @@ avl_t* sorted_array_to_avl(int* array, size_t size)
  * Return: The node
  */
 
-binary_tree_t* binary_tree_node(binary_tree_t* parent, int value)
+binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 {
-	binary_tree_t* node;
+	binary_tree_t *node;
 
 	node = malloc(sizeof(binary_tree_t));
 	if (!node)
