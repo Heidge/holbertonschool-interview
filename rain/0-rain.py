@@ -10,8 +10,8 @@ int: La quantite totale d'eau retenue entre les murs.
 """
 
 def rain(walls):
-
-    # Initialisation des variables
+    """return how many square units of water will be retained after it rains"""
+    
     index = 0
     waterQuantity = 0
     nbBorne = 0
