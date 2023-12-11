@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """Calcule la quantite d'eau retenue entre des murs representes par un tableau."""
 
 def rain(walls):
