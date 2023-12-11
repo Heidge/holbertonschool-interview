@@ -16,7 +16,7 @@ def rain(walls):
     while index < len(walls):
         nbZero = 0
 
-        if ((index == 0 and walls[0] == 0) or 
+        if ((index == 0 and walls[0] == 0) or
                 (index == len(walls) - 1 and walls[-1] == 0)):
             index += 1
             continue
