@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Calcule la quantite d'eau retenue entre des murs representes par un tableau."""
+"""Calcule la quantite d'eau entre des murs representes par un tableau"""
 
 
 def rain(walls):
     """return how many square units of water will be retained after it rains"""
-    
+
     index = 0
     waterQuantity = 0
     nbBorne = 0
@@ -16,7 +16,8 @@ def rain(walls):
     while index < len(walls):
         nbZero = 0
 
-        if (index == 0 and walls[0] == 0) or (index == len(walls) - 1 and walls[-1] == 0):
+        if ((index == 0 and walls[0] == 0) or 
+            (index == len(walls) - 1 and walls[-1] == 0)):
             index += 1
             continue
 
