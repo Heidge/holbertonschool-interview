@@ -29,12 +29,14 @@ void heap_sort(int *array, size_t size)
 {
     int a = (int)size / 2 - 1;
     int b = (int)size - 1;
+    int i;
+    int y;
 
-    for (int i = a; i >= 0; i--) {
+    for (i = a; i >= 0; i--) {
         heapify(array, size, i);
     }
 
-    for (int y = b; y >= 0; y--) {
+    for (y = b; y >= 0; y--) {
         swap(&array[0], &array[y]);
         
         heapify(array, y, 0);
