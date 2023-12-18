@@ -1,13 +1,15 @@
 #include "sort.h"
 
 
-void swap(int *a, int *b) {
+void swap(int *a, int *b) 
+{
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void sift_down(int *array, size_t root, size_t size, size_t sizes) {
+void sift_down(int *array, size_t root, size_t size, size_t sizes) 
+{
     size_t max_child, swap_index;
 
     while (2 * root + 1 < size) {
@@ -33,21 +35,25 @@ void sift_down(int *array, size_t root, size_t size, size_t sizes) {
     }
 }
 
-void heapify(int *array, size_t size) {
+void heapify(int *array, size_t size) 
+{
     size_t i;
     
-    for (i = size / 2; i > 0; i--) {
+    for (i = size / 2; i > 0; i--) 
+    {
         sift_down(array, i - 1, size, size);
     }
 }
 
-void heap_sort(int *array, size_t size) {
+void heap_sort(int *array, size_t size) 
+{
 
     size_t i;
 
     heapify(array, size);
     
-    for (i = size - 1; i > 0; i--) {
+    for (i = size - 1; i > 0; i--) 
+    {
         swap(&array[0], &array[i]);
         print_array(array, size);
         sift_down(array, 0, i, size);
