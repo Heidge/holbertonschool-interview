@@ -1,45 +1,50 @@
 #include "sort.h"
 
-void swap(int *a, int *b)
-{
-    int tmp = *a;
+
+void swap(int *a, int *b) {
+    int temp = *a;
     *a = *b;
-    *b = tmp;
+    *b = temp;
 }
 
-void heapify(int arr[], int N, int i)
-{
-    int largest = i;
-    int l = 2 * i + 1;
-    int r = 2 * i + 2;
+void sift_down(int *array, size_t root, size_t size, size_t sizes) {
+    size_t max_child, swap_index;
 
-    if (l < N && arr[l] > arr[largest])
-        largest = l;
+    while (2 * root + 1 < size) {
+        max_child = 2 * root + 1;
+        swap_index = root;
 
-    if (r < N && arr[r] > arr[largest])
-        largest = r;
+        if (array[swap_index] < array[max_child]) {
+            swap_index = max_child;
+        }
 
-    if (largest != i) {
-        swap(&arr[i], &arr[largest]);
-        heapify(arr, N, largest);
+        if (max_child + 1 < size && array[swap_index] < array[max_child + 1]) {
+            swap_index = max_child + 1;
+        }
+
+        if (swap_index == root) {
+            break;
+        } else {
+            swap(&array[root], &array[swap_index]);
+            print_array(array, sizes);
+            root = swap_index;
+        }
+        
     }
 }
 
-void heap_sort(int *array, size_t size)
-{
-    int a = (int)size / 2 - 1;
-    int b = (int)size - 1;
-    int i;
-    int y;
-
-    for (i = a; i >= 0; i--) {
-        heapify(array, size, i);
+void heapify(int *array, size_t size) {
+    for (size_t i = size / 2; i > 0; i--) {
+        sift_down(array, i - 1, size, size);
     }
+}
 
-    for (y = b; y >= 0; y--) {
-        swap(&array[0], &array[y]);
-        heapify(array, y, 0);
+void heap_sort(int *array, size_t size) {
+    heapify(array, size);
+
+    for (size_t i = size - 1; i > 0; i--) {
+        swap(&array[0], &array[i]);
         print_array(array, size);
+        sift_down(array, 0, i, size);
     }
-    print_array(array, size);
 }

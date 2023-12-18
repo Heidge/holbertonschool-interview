@@ -5,8 +5,7 @@
 #include <stdio.h>
 
 void print_array(const int *array, size_t size);
-void swap(int* a, int* b);
-void heapify(int arr[], int N, int i);
+void siftdown(int array[], int nodeValue, int root, int last);
 void heap_sort(int *array, size_t size);
 
 #endif /* LISTS_H */
