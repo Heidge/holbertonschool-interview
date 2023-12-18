@@ -34,15 +34,18 @@ void sift_down(int *array, size_t root, size_t size, size_t sizes) {
 }
 
 void heapify(int *array, size_t size) {
-    for (size_t i = size / 2; i > 0; i--) {
+    size_t i;
+    
+    for (i = size / 2; i > 0; i--) {
         sift_down(array, i - 1, size, size);
     }
 }
 
 void heap_sort(int *array, size_t size) {
     heapify(array, size);
+    size_t i;
 
-    for (size_t i = size - 1; i > 0; i--) {
+    for (i = size - 1; i > 0; i--) {
         swap(&array[0], &array[i]);
         print_array(array, size);
         sift_down(array, 0, i, size);
