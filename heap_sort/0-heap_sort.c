@@ -27,14 +27,14 @@ void heapify(int arr[], int N, int i)
 
 void heap_sort(int *array, size_t size)
 {
-    int i = 0;
-    int y = 0;
+    int a = size / 2 - 1;
+    int b = size - 1;
 
-    for (int i = size / 2 - 1; i >= 0; i--) {
+    for (int i = a; i >= 0; i--) {
         heapify(array, size, i);
     }
 
-    for (int y = size - 1; y >= 0; y--) {
+    for (int y = b; y >= 0; y--) {
         swap(&array[0], &array[y]);
         
         heapify(array, y, 0);
