@@ -12,26 +12,31 @@ void sift_down(int *array, size_t root, size_t size, size_t sizes)
 {
     size_t max_child, swap_index;
 
-    while (2 * root + 1 < size) {
+    while (2 * root + 1 < size) 
+    {
         max_child = 2 * root + 1;
         swap_index = root;
 
-        if (array[swap_index] < array[max_child]) {
+        if (array[swap_index] < array[max_child]) 
+        {
             swap_index = max_child;
         }
 
-        if (max_child + 1 < size && array[swap_index] < array[max_child + 1]) {
+        if (max_child + 1 < size && array[swap_index] < array[max_child + 1]) 
+        {
             swap_index = max_child + 1;
         }
 
-        if (swap_index == root) {
+        if (swap_index == root) 
+        {
             break;
-        } else {
+        } 
+        else 
+        {
             swap(&array[root], &array[swap_index]);
             print_array(array, sizes);
             root = swap_index;
         }
-        
     }
 }
 
