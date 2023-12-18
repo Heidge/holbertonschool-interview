@@ -27,10 +27,8 @@ void heapify(int arr[], int N, int i)
 
 void heap_sort(int *array, size_t size)
 {
-    int a = size / 2 - 1;
-    int b = size - 1;
-    int i;
-    int y;
+    int a = (int)size / 2 - 1;
+    int b = (int)size - 1;
 
     for (int i = a; i >= 0; i--) {
         heapify(array, size, i);
