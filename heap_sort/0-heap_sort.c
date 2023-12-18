@@ -29,8 +29,8 @@ void heap_sort(int *array, size_t size)
 {
     int a = size / 2 - 1;
     int b = size - 1;
-    int i = 0;
-    int y = 0;
+    int i;
+    int y;
 
     for (int i = a; i >= 0; i--) {
         heapify(array, size, i);
