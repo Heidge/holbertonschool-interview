@@ -38,8 +38,8 @@ void heap_sort(int *array, size_t size)
 
     for (y = b; y >= 0; y--) {
         swap(&array[0], &array[y]);
-        
         heapify(array, y, 0);
         print_array(array, size);
     }
+    print_array(array, size);
 }
