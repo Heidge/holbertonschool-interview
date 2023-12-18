@@ -42,9 +42,11 @@ void heapify(int *array, size_t size) {
 }
 
 void heap_sort(int *array, size_t size) {
-    heapify(array, size);
+
     size_t i;
 
+    heapify(array, size);
+    
     for (i = size - 1; i > 0; i--) {
         swap(&array[0], &array[i]);
         print_array(array, size);
