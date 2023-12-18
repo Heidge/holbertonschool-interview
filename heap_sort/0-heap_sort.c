@@ -31,10 +31,10 @@ void heap_sort(int *array, size_t size)
         heapify(array, size, i);
     }
 
-    for (int i = size - 1; i >= 0; i--) {
-        swap(&array[0], &array[i]);
+    for (int y = size - 1; y >= 0; y--) {
+        swap(&array[0], &array[y]);
         
-        heapify(array, i, 0);
+        heapify(array, y, 0);
         print_array(array, size);
     }
 }
