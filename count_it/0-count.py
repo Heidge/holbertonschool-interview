@@ -1,8 +1,21 @@
 #!/usr/bin/python3
+"""Module to count the occurrences of words in the titles of hot posts"""
 
 import requests
 
 def count_words(subreddit, word_list, after=None, counts=None):
+    """
+    Count occurrences of specific words in the titles of posts from a Reddit subreddit.
+
+    Args:
+        subreddit (str): The name of the subreddit.
+        word_list (list): A list of words to search for in post titles.
+        after (str, optional): A parameter for pagination in Reddit API.
+        counts (dict, optional): A dictionary to store the counts of each word.
+
+    Returns:
+        None: The results are printed, and counts are stored in the 'counts' parameter.
+    """
     if counts is None:
         counts = {}
 
@@ -42,11 +55,16 @@ def count_words(subreddit, word_list, after=None, counts=None):
         print_results(counts)
 
 def print_results(counts):
+    """
+    Print the word counts in descending order.
+
+    Args:
+        counts (dict): A dictionary containing word counts.
+
+    Returns:
+        None: The results are printed.
+    """
     sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
     for word, count in sorted_counts:
         print(f"{word}: {count}")
 
-# Example usage:
-subreddit = 'python'
-word_list = ['python', 'java', 'javascript']
-count_words(subreddit, word_list)
