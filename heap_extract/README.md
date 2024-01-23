@@ -41,7 +41,7 @@ This function is used only for visualisation purpose. You don’t have to push i
 ### 0. Heap - Extract
 
 Write a function that extracts the root node of a Max Binary Heap:
-
+git 
 - Prototype: int heap_extract(heap_t **root);
 - root is a double pointer to the root node of the heap
 - Your function must return the value stored in the root node
