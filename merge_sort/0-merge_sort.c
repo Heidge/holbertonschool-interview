@@ -3,47 +3,53 @@
 #include "sort.h"
 
 
+
 void merge(int *array, int left, int middle, int right) {
     int i, j, k;
     int n1 = middle - left + 1;
     int n2 = right - middle;
 
-    int *left_array = (int *)malloc(n1 * sizeof(int));
-    int *right_array = (int *)malloc(n2 * sizeof(int));
-
-    for (i = 0; i < n1; i++)
-        left_array[i] = array[left + i];
-    for (j = 0; j < n2; j++)
-        right_array[j] = array[middle + 1 + j];
+    // Allocate a single temporary array for both left and right subarrays
+    int *temp_array = (int *)malloc((n1 + n2) * sizeof(int));
 
     i = 0;
     j = 0;
     k = left;
+
+    // Copy data to temp_array
+    for (int idx = 0; idx < n1; idx++)
+        temp_array[idx] = array[left + idx];
+    for (int idx = 0; idx < n2; idx++)
+        temp_array[n1 + idx] = array[middle + 1 + idx];
+
+    // Merge the two subarrays back into array
     while (i < n1 && j < n2) {
-        if (left_array[i] <= right_array[j]) {
-            array[k] = left_array[i];
+        if (temp_array[i] <= temp_array[n1 + j]) {
+            array[k] = temp_array[i];
             i++;
         } else {
-            array[k] = right_array[j];
+            array[k] = temp_array[n1 + j];
             j++;
         }
         k++;
     }
 
+    // Copy the remaining elements of left_array to array
     while (i < n1) {
-        array[k] = left_array[i];
+        array[k] = temp_array[i];
         i++;
         k++;
     }
 
+    // Copy the remaining elements of right_array to array
     while (j < n2) {
-        array[k] = right_array[j];
+        array[k] = temp_array[n1 + j];
         j++;
         k++;
     }
 
-    free(left_array);
-    free(right_array);
+    // Free the temporary array
+    free(temp_array);
 }
 
 void merge_sort_helper(int *array, int left, int right) {
