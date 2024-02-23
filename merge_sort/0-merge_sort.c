@@ -77,4 +77,3 @@ void	merge_sort(int *array, size_t size)
 	mergesort_topdown_split(array, result_array, 0, size);
 	free(result_array);
 }
-
