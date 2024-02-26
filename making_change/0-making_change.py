@@ -3,6 +3,7 @@
 Making change function
 """
 
+
 def makeChange(coins, total):
     coins.sort(reverse=True)
     count = 0
@@ -11,14 +12,14 @@ def makeChange(coins, total):
 
     if total == 0:
         return 0
-        
+
     for i in range(length):
         if coins[i] < 0:
             return -1
         while (total >= coins[i]):
             count += total / coins[i]
             total = total % coins[i]
-    if total != 0:  
+    if total != 0:
         if length != 0:
             if length > 1:
                 coins_copy.pop(1)
@@ -30,4 +31,3 @@ def makeChange(coins, total):
             return -1
     else:
         return round(count)
-    
