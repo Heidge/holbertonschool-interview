@@ -10,13 +10,13 @@ def makeChange(coins, total):
     length = len(coins)
     coins_copy = coins.copy()
 
-    if total == 0:
+    if total <= 0:
         return 0
 
     for i in range(length):
         if coins[i] < 0:
             return -1
-        while (total >= coins[i]):
+        while (total > coins[i]):
             count += total / coins[i]
             total = total % coins[i]
     if total != 0:
