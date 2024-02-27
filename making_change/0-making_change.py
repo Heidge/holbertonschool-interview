@@ -3,6 +3,8 @@
 Making change function
 """
 
+from math import *
+
 
 def makeChange(coins, total):
     coins.sort(reverse=True)
@@ -30,4 +32,4 @@ def makeChange(coins, total):
         else:
             return -1
     else:
-        return count
+        return floor(count)
