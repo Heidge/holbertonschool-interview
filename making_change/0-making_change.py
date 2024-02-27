@@ -16,7 +16,7 @@ def makeChange(coins, total):
         return 0
 
     for i in range(length):
-        if coins[i] < 0:
+        if coins[i] <= 0:
             return -1
         while (total >= coins[i]):
             count += floor(total / coins[i])
