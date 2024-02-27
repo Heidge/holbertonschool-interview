@@ -19,8 +19,9 @@ def makeChange(coins, total):
         if coins[i] < 0:
             return -1
         while (total >= coins[i]):
-            count += total / coins[i]
+            count += floor(total / coins[i])
             total = total % coins[i]
+            print(total, floor(count))
     if total != 0:
         if length != 0:
             if length > 1:
