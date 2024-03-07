@@ -2,7 +2,7 @@
 #include "list.h"
 
 /**
- * Add a new node to the end of a double circular linked list
+ * add_node_end - Add new node to the end of a double circular linked list
  * @list: pointer to the pointer to the head of the list
  * @str: string to copy into the new node
  *
@@ -42,7 +42,7 @@ List *add_node_end(List **list, char *str)
 }
 
 /**
- * Add a new node to the beginning of a double circular linked list
+ * add_node_begin - Add new node to the beginning of a double linked list
  * @list: pointer to the pointer to the head of the list
  * @str: string to copy into the new node
  *
