@@ -26,6 +26,23 @@ int getMax(int *array, int n)
     return mx;
 }
 
+double my_pow(double base, int exponent) 
+{
+    double result = 1.0;
+    int i;
+    
+    if (exponent < 0) {
+        base = 1.0 / base;
+        exponent = -exponent;
+    }
+    
+    for (i = 0; i < exponent; i++) {
+        result *= base;
+    }
+    
+    return result;
+}
+
 void radix_sort(int *array, size_t size)
 {
     int i = 0;
@@ -57,7 +74,7 @@ void radix_sort(int *array, size_t size)
             {
                 for(k = 0; k < len; k++)
                 {
-                    if (array[k] / (int)pow(10, i) > array[i] / (int)pow(10, i))
+                    if (array[k] / my_pow(10, i) > array[i] / my_pow(10, i))
                     {
                         int tmp_array = array[k];
                         array[k] = array[i];
