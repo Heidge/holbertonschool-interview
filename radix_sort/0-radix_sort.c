@@ -57,7 +57,6 @@ void radix_sort(int *array, size_t size) {
     }
 
     for (j = 0; j < duration; j++) {
-        // Copier array dans tmp_array à chaque itération
         for (i = 0; i < len; i++) {
             tmp_array[i] = array[i];
         }
@@ -65,23 +64,19 @@ void radix_sort(int *array, size_t size) {
         int count[10] = {0};
         int output[len];
 
-        // Compter le nombre d'occurrences de chaque chiffre
         for (i = 0; i < len; i++) {
             count[(tmp_array[i] / my_pow(10, j)) % 10]++;
         }
 
-        // Ajuster le tableau count pour contenir les positions réelles
         for (i = 1; i < 10; i++) {
             count[i] += count[i - 1];
         }
 
-        // Construire le tableau de sortie
         for (i = len - 1; i >= 0; i--) {
             output[count[(tmp_array[i] / my_pow(10, j)) % 10] - 1] = tmp_array[i];
             count[(tmp_array[i] / my_pow(10, j)) % 10]--;
         }
 
-        // Copier le tableau de sortie dans le tableau original
         for (i = 0; i < len; i++) {
             array[i] = output[i];
         }
