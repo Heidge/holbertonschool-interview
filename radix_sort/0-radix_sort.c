@@ -57,7 +57,7 @@ void radix_sort(int *array, size_t size)
             {
                 for(k = 0; k < len; k++)
                 {
-                    if (array[k] / pow(10, i) > array[i] / pow(10, i))
+                    if (array[k] / (int)pow(10, i) > array[i] / (int)pow(10, i))
                     {
                         int tmp_array = array[k];
                         array[k] = array[i];
