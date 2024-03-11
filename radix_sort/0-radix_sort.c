@@ -16,7 +16,7 @@ int numLength(int num)
 
 int getMax(int *array, int n) 
 {
-    int i = 0
+    int i = 0;
     int mx = array[0];
     for (i = 1; i < n; i++)
         if (array[i] > mx)
@@ -71,3 +71,4 @@ void radix_sort(int *array, size_t size)
 
     free(tmp_array);
 }
+
