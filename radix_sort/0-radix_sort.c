@@ -8,7 +8,8 @@ int numLength(int num)
 {
     int count = 0;
 
-    while(num > 0){
+    while(num > 0)
+    {
         count++;
         num = num/10;;
     }
@@ -17,8 +18,9 @@ int numLength(int num)
 
 int getMax(int *array, int n)
 {
+    int i = 0
     int mx = array[0];
-    for (int i = 1; i < n; i++)
+    for (i = 1; i < n; i++)
         if (array[i] > mx)
             mx = array[i];
     return mx;
