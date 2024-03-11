@@ -16,8 +16,9 @@ int numLength(int num)
 
 int getMax(int *array, int n) 
 {
+    int i = 0
     int mx = array[0];
-    for (int i = 1; i < n; i++)
+    for (i = 1; i < n; i++)
         if (array[i] > mx)
             mx = array[i];
     return mx;
@@ -68,5 +69,5 @@ void radix_sort(int *array, size_t size)
         print_array(array, size);
     }
 
-    free(tmp_array); // Libérer la mémoire allouée pour le tableau temporaire
+    free(tmp_array);
 }
