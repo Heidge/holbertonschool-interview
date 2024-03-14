@@ -1,89 +1,84 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 #include "sort.h"
 
-int numLength(int num) 
+
+/**
+ * get_max - get maximum number of unit in the array
+ *
+ * @array: The array
+ * @size: Size of the array
+ *
+ * Return: number of unit
+*/
+int get_max(int *array, size_t size)
 {
-    int count = 0;
+	int max = 0, i = 0, nb = 0;
 
-    while (num > 0) 
-    {
-        count++;
-        num = num / 10;
-    }
-    return count;
+	for (i = 0; i < (int)size; i++)
+	{
+		if (array[i] > max)
+			max = array[i];
+	}
+
+	while (max)
+	{
+		max /= 10;
+		nb++;
+	}
+
+	return (nb);
 }
 
-int getMax(int *array, int n) 
+
+/**
+ * copy_array - Copy an array
+ *
+ * @new_array: The array
+ * @array: The array copied
+ * @size: Size of the array
+ */
+void copy_array(int *new_array, int *array, size_t size)
 {
-    int i = 0;
-    int mx = array[0];
-    for (i = 1; i < n; i++)
-        if (array[i] > mx)
-            mx = array[i];
-    return mx;
+	int i;
+
+	for (i = 0; i < (int)size; i++)
+		new_array[i] = array[i];
 }
 
-int my_pow(int base, int exponent) 
+
+/**
+ * radix_sort - Radix sort algorithm
+ *
+ * @array: The array to sort
+ * @size: Number of elements in @array
+*/
+void radix_sort(int *array, size_t size)
 {
-    int result = 1.0;
-    int i;
-    
-    if (exponent < 0) 
-    {
-        base = 1.0 / base;
-        exponent = -exponent;
-    }
-    
-    for (i = 0; i < exponent; i++) 
-    {
-        result *= base;
-    }
-    
-    return result;
+	int *new_array, i = 0, j = 0, k = 0, u = 1, nb = 0;
+
+	if (size < 2)
+		return;
+
+	new_array = malloc(size * sizeof(int));
+	if (!new_array)
+		return;
+	copy_array(new_array, array, size);
+	nb = get_max(array, size);
+
+	for (u = 1; nb > 0; u *= 10, k = 0, nb--)
+	{
+		for (i = 0; i < 10; i++)
+		{
+			for (j = 0; j < (int)size; j++)
+			{
+				if ((array[j] / u) % 10 == i)
+				{
+					new_array[k] = array[j];
+					k++;
+				}
+			}
+		}
+		copy_array(array, new_array, size);
+		print_array(array, size);
+	}
+	free(new_array);
 }
-
-void radix_sort(int *array, size_t size) {
-    int i, j;
-    int len = size;
-    int duration = numLength(getMax(array, size));
-    
-    int *tmp_array = (int *)malloc(len * sizeof(int));
-
-    if (tmp_array == NULL) {
-        fprintf(stderr, "Erreur d'allocation mémoire\n");
-        exit(EXIT_FAILURE);
-    }
-
-    for (j = 0; j < duration; j++) {
-        for (i = 0; i < len; i++) {
-            tmp_array[i] = array[i];
-        }
-
-        int count[10] = {0};
-        int output[len];
-
-        for (i = 0; i < len; i++) {
-            count[(tmp_array[i] / my_pow(10, j)) % 10]++;
-        }
-
-        for (i = 1; i < 10; i++) {
-            count[i] += count[i - 1];
-        }
-
-        for (i = len - 1; i >= 0; i--) {
-            output[count[(tmp_array[i] / my_pow(10, j)) % 10] - 1] = tmp_array[i];
-            count[(tmp_array[i] / my_pow(10, j)) % 10]--;
-        }
-
-        for (i = 0; i < len; i++) {
-            array[i] = output[i];
-        }
-
-        print_array(array, size);
-    }
-
-    free(tmp_array);
-}
-
