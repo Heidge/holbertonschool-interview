@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "sort.h": "c"
+        "sort.h": "c",
+        "stdio.h": "c"
     }
 }
