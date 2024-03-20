@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Method that calculates the fewest number of operations needed
+Method that calculates the perimeter of an island completely surrounded by water
 """
 
 
@@ -19,5 +19,3 @@ def island_perimeter(grid):
                 if grid[i][j+1] == 0:
                     perimeter += 1
     return perimeter
-
-                
