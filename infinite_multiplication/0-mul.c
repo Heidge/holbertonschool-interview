@@ -2,147 +2,269 @@
 
 int _putchar(char c);
 
-
 /**
- *	reverse_buffer - reverses buffer's value
+ * decaleString - Decale a string to the left
  *
- * @r: buffer
- * @size: size of buffer
- * Return: r
+ * @s: The string
+ *
+ * Return: The string
  */
 
-char	*reverse_buffer(char *r, int size)
+char *decaleString(char *s)
 {
-	int	i, nb;
+	char *t;
 
-	i = 0;
-	while (i < size)
+	t = s;
+
+	while (*s != '0')
+		s++;
+	while (*s >= '0' && *s <= '9')
 	{
-		size--;
-		nb = r[i];
-		r[i] = r[size];
-		r[size] = nb;
-		i++;
+		*(s - 1) = *s;
+		s++;
 	}
-	return (r);
+	*s = '\0';
+	*(s - 1) = '\0';
+	s = t;
+
+	return (t);
 }
 
 /**
- * _puts_error - prints error or prints string depending on parameter
- * @error: parameter to chose how to use function
- * @str: string to print
- * Return: 98 if error, 0 if not
+ * addZero - Multiply a string by 10
+ *
+ * @s: The string
+ * @i: Number of 0
+ *
+ * Return: The string
  */
-int		_puts_error(int error, char *str)
+
+char *addZero(char *s, int i)
 {
-	if (error)
+	char *t;
+
+	t = s;
+
+	while (*s != '0')
+		s++;
+	for (; i > 0; i--)
 	{
-		_putchar('E');
-		_putchar('r');
-		_putchar('r');
-		_putchar('o');
-		_putchar('r');
-		_putchar('\n');
-		return (98);
+		while (*s)
+		{
+			*(s - 1) = *s;
+			s++;
+		}
+		*(s - 1) = '0';
+		s = t;
 	}
-	while (*str)
-		_putchar(*str++);
+	return (t);
+}
+
+/**
+ * _strlen - Return the length of a string
+ * @s: The string
+ * Return: The length of s
+ */
+
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+		i++;
+
+	return (i);
+}
+
+/**
+ * _puts - Print a string
+ *
+ * @str: the string
+ */
+
+void _puts(char *str)
+{
+	int i = 0;
+
+	while (str[i] == '0')
+		i++;
+	while (str[i])
+	{
+		_putchar(str[i]);
+		i++;
+	}
 	_putchar('\n');
+}
+
+/**
+ * resetTab - Put 0 on all case of a string
+ * @tab: The string
+ * @size: The size of the string
+ */
+
+void resetTab(char *tab, int size)
+{
+	int i;
+
+	for (i = 0; i < size; i++)
+	{
+		tab[i] = '0';
+	}
+}
+
+/**
+ * isDigit - Check if a string only contains number
+ * @s: The string
+ * Return: 1 for success, 0 if error
+ */
+
+int isDigit(char *s)
+{
+	int i;
+
+	for (i = 0; s[i]; i++)
+	{
+		if (s[i] < 48 || s[i] > 57)
+			return (1);
+	}
 	return (0);
 }
 
 /**
- * infinite_add - adds number to string of numbers
- * @sum: String of numbers
- * @nb: number to add
- * @index: decimal place of number
- * @len: length of sum string
+ * addNum - Add the 2 strings of int
+ *
+ *@c: First string
+ *@n: Second string
+ *
+ * Return: The result of the addition
  */
-void	infinite_add(char *sum, int nb, int index, int len)
-{
-	int	tenth = 0;
 
-	sum[index] += nb % 10;
-	sum[index + 1] += nb / 10;
-	while (index < len)
+char *addNum(char *c, char *n)
+{
+	int size = _strlen(c);
+	int res, retenu = 0, i = size;
+	char *r;
+
+	r = malloc(size * sizeof(char));
+	if (r == NULL)
+		return (NULL);
+	resetTab(r, size);
+
+	while (*c != '\0')
+		c++;
+	while (*n != '\0')
+		n++;
+	c--;
+	n--;
+
+	for (; *c && *n; c--, n--, i--)
 	{
-		sum[index] += tenth;
-		tenth = 0;
-		if (sum[index] > '9')
-			tenth = 1;
-		sum[index] = (sum[index] - '0') % 10 + '0';
-		index++;
+		res = (*c - '0') + (*n - '0') + retenu;
+		retenu = res / 10;
+		r[i] = res % 10 + '0';
 	}
+	for (; *c; c--, i--)
+	{
+		res = *c - '0' + retenu;
+		retenu = res / 10;
+		r[i] = res % 10 + '0';
+	}
+	for (; *n; n--, i--)
+	{
+		res = *n - '0' + retenu;
+		retenu = res / 10;
+		r[i] = res % 10 + '0';
+	}
+	if (retenu > 0)
+		r[i] = retenu + '0';
+	decaleString(r);
+	return (r);
 }
 
 /**
- * infinite_mul - multiplies two numbers in string format
- * @n1: number 1
- * @n2: number 2
- * @sum: array to store result of multiplication
- * @len: size of sum arrays
+ * mulNum - Multiply the 2 strings of int
+ *
+ *@n1: First string
+ *@n2: Second string
+ *@r: The result of multiplication of one digit
+ *@count: The result of addition of all the r
+ *@size: The size of the string
+ * Return: The result of the multiplication
  */
-void	infinite_mul(char *n1, char *n2, char *sum, size_t len)
-{
-	int	i, j, nb;
 
-	for (i = 0; n1[i]; i++)
-		;
-	reverse_buffer(n1, i);
-	for (i = 0; n2[i]; i++)
-		;
-	reverse_buffer(n2, i);
-	for (i = 0; (size_t)i < len; i++)
-		sum[i] = '0';
-	for (i = 0; n1[i]; i++)
+char *mulNum(char *n1, char *n2, char *r, char *count, int size)
+{
+	int i, j, res, retenu, temp = size, diz = 0;
+
+	for (i = _strlen(n1) - 1; n1[i]; i--)
 	{
-		for (j = 0; n2[j]; j++)
+		retenu = 0;
+		size = temp;
+		for (j = _strlen(n2) - 1; n2[j]; j--, size--)
 		{
-			nb = (n1[i] - '0') * (n2[j] - '0');
-			infinite_add(sum, nb, i + j, len);
+			res = (n1[i] - '0') * (n2[j] - '0') + retenu;
+			retenu = res / 10;
+			r[size] = res % 10 + '0';
 		}
+		if (retenu > 0)
+		{
+			r[size] = retenu + '0';
+		}
+		if (diz > 0)
+			addZero(r, diz);
+		decaleString(r);
+		count = addNum(count, r);
+		resetTab(r, temp);
+		diz++;
 	}
-	reverse_buffer(sum, len);
-	i = 0;
-	while (sum[i] && sum[i] == '0' && sum[i + 1])
-		i++;
-	_puts_error(0, sum + i);
+
+	return (count);
 }
 
-
 /**
- * main - checks for error and prepares variable for multiplication
- * @ac: number of arguments
- * @av: array of arguments
- * Return: Always 0
+ * main - Mulitplies two positive numbers
+ * @argc: Number of arguments
+ * @argv: Array of arguments
+ * Return: 0
  */
-int		main(int ac, char **av)
-{
-	unsigned int	i, size;
-	char	*result;
 
-	if (ac != 3)
-		return (_puts_error(1, NULL));
-	for (i = 0; av[1][i]; i++)
-		if (av[1][i] < '0' || av[1][i] > '9')
-			return (_puts_error(1, NULL));
-	size = i;
-	if (!i)
-		return (_puts_error(1, NULL));
-	for (i = 0; av[2][i]; i++)
-		if (av[2][i] < '0' || av[2][i] > '9')
-			return (_puts_error(1, NULL));
-	if (!i)
-		return (_puts_error(1, NULL));
-	size += i;
-	result = malloc((sizeof(*result) + 1) * size);
-	if (!result)
-		return (_puts_error(1, NULL));
-	for (i = 0; i < size; i++)
-		result[i] = '0';
-	result[i] = '\0';
-	infinite_mul(av[1], av[2], result, size);
-	free(result);
-	result = NULL;
+int main(int argc, char **argv)
+{
+	int len1, len2, size;
+	char *tabR, *tabC;
+	char error[5] = "Error";
+
+	if (argc != 3)
+	{
+		_puts(error);
+		exit(98);
+	}
+	if (isDigit(argv[1]) || isDigit(argv[2]))
+	{
+		_puts(error);
+		exit(98);
+	}
+
+	if (atoi(argv[1]) == 0 || atoi(argv[2]) == 0)
+	{
+		_putchar('0');
+		_putchar('\n');
+	}
+	else
+	{
+		len1 = _strlen(argv[1]);
+		len2 = _strlen(argv[2]);
+		size = len1 + len2;
+		tabR = malloc(size * sizeof(char));
+		if (tabR == NULL)
+			return (0);
+		resetTab(tabR, size);
+		tabC = malloc(size * sizeof(char));
+		if (tabC == NULL)
+			return (0);
+		resetTab(tabC, size);
+		tabC = mulNum(argv[1], argv[2], tabR, tabC, size);
+		_puts(tabC);
+	}
 	return (0);
 }
