@@ -1,116 +1,159 @@
-#include "mul.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "holberton.h"
 
 /**
- * print_error_and_exit - prints "Error" and exits with status 98
+ * main - multiplies two positive numbers
+ *
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: 0 in case of success, 98 in case of failure, 1 if argc != 3
  */
-void print_error_and_exit(void)
+int main(int argc, char **argv)
 {
-	printf("Error\n");
-	exit(98);
+	int len1, len2, len_result, *result;
+
+	if (argc != 3 || !verify_arg(argv[1]) || !verify_arg(argv[2]))
+	{
+		_puts("Error\n");
+		exit(98);
+	}
+	len1 = _strlen(argv[1]);
+	len2 = _strlen(argv[2]);
+	len_result = len1 + len2;
+
+	result = malloc(len_result * sizeof(int));
+
+	if (!result)
+		return (EXIT_FAILURE);
+
+	initialize_array(result, len_result);
+	multiply_numbers(argv[1], argv[2], result, len1, len2);
+	print_result(result, len_result);
+
+	free(result);
+	return (EXIT_SUCCESS);
 }
 
 /**
- * is_digit_str - checks if a string is composed of only digits
- * @str: the string to check
+ * _puts - prints a string
  *
- * Return: 1 if true, 0 if false
+ * @s: string to print
+ *
+ * Return: the length of the string
  */
-int is_digit_str(const char *str)
+int _puts(char *s)
+{
+	int length = 0;
+
+	for (; *s; s++)
+		length += _putchar(*s);
+
+	return (length);
+}
+
+/**
+ * _strlen - Finds the length of a string
+ *
+ * @s: string to find the length
+ *
+ * Return: the length of the string
+ */
+int _strlen(char *s)
 {
 	int i = 0;
 
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-		{
-			return (0);
-		}
+	while (s[i] != '\0')
 		i++;
+
+	return (i);
+}
+
+/**
+ * verify_arg - Verifies if the argument is a number or not
+ *
+ * @num: string to verify
+ *
+ * Return: 1 if the argument is a number, 0 otherwise
+ */
+char verify_arg(char *num)
+{
+	int i;
+
+	for (i = 0; num[i] != '\0'; i++)
+	{
+		if (num[i] < '0' || num[i] > '9')
+			return (0);
 	}
+
 	return (1);
 }
 
 /**
- * print_result - prints the result of the multiplication
- * @result: the array containing the result
- * @size: the size of the result array
+ * multiply_numbers - Multiplies two numbers
+ *
+ * @num1: first number as a string
+ * @num2: second number as a string
+ * @result: array of int to contain the product
+ * @len1: length of the first number
+ * @len2: length of the second number
  */
-void print_result(int *result, int size)
+void multiply_numbers(char *num1, char *num2, int *result, int len1, int len2)
 {
-	int i = 0;
-
-	while (i < size && result[i] == 0)
-	{
-		i++;
-	}
-	if (i == size)
-	{
-		_putchar('0');
-	}
-	for (; i < size; i++)
-	{
-		_putchar(result[i] + '0');
-	}
-	_putchar('\n');
-}
-
-/**
- * multiply - multiplies two numbers and prints the result
- * @num1: the first number as a string
- * @num2: the second number as a string
- */
-void multiply(const char *num1, const char *num2)
-{
-	int len1 = strlen(num1);
-	int len2 = strlen(num2);
-	int *result = calloc(len1 + len2, sizeof(int));
-	int i, j, prod, carry;
-
-	if (result == NULL)
-	{
-		print_error_and_exit();
-	}
+	int i, j, product, pos1, pos2, digit1, digit2;
 
 	for (i = len1 - 1; i >= 0; i--)
 	{
-		carry = 0;
+		digit1 = num1[i] - '0';
+
 		for (j = len2 - 1; j >= 0; j--)
 		{
-			prod = (num1[i] - '0') * (num2[j] - '0') + result[i + j + 1] + carry;
-			carry = prod / 10;
-			result[i + j + 1] = prod % 10;
+			digit2 = num2[j] - '0';
+			product = digit1 * digit2;
+
+			pos1 = i + j;
+			pos2 = i + j + 1;
+
+			product += result[pos2];
+
+			result[pos1] += product / 10;
+			result[pos2] = product % 10;
 		}
-		result[i + j + 1] += carry;
 	}
-
-	print_result(result, len1 + len2);
-
-	free(result);
 }
 
 /**
- * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
+ * initialize_array - Initializes an array with 0
  *
- * Return: 0 on success, 98 on error
+ * @array: array to initialize
+ * @size: size of the array
  */
-int main(int argc, char *argv[])
+void initialize_array(int *array, int size)
 {
-	if (argc != 3)
+	int i;
+
+	for (i = 0; i < size; i++)
+		array[i] = 0;
+}
+
+/**
+ * print_result - Prints the result of the multiplication
+ *
+ * @array: array containing the result
+ * @size: size of the array
+ */
+void print_result(int *array, int size)
+{
+	int i = 0;
+
+	while (i < size && array[i] == 0)
+		i++;
+
+	if (i == size)
+		_putchar('0');
+	else
 	{
-		print_error_and_exit();
+		for (; i < size; i++)
+			_putchar(array[i] + '0');
 	}
-
-	if (!is_digit_str(argv[1]) || !is_digit_str(argv[2]))
-	{
-		print_error_and_exit();
-	}
-
-	multiply(argv[1], argv[2]);
-
-	return (0);
+	_putchar('\n');
 }
