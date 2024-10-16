@@ -2,29 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-/**
- * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
- *
- * Return: 0 on success, 98 on error
- */
-int main(int argc, char *argv[])
-{
-	if (argc != 3)
-	{
-		print_error_and_exit();
-	}
-
-	if (!is_digit_str(argv[1]) || !is_digit_str(argv[2]))
-	{
-		print_error_and_exit();
-	}
-
-	multiply(argv[1], argv[2]);
-
-	return (0);
-}
 
 /**
  * print_error_and_exit - prints "Error" and exits with status 98
@@ -112,4 +89,28 @@ void print_result(int *result, int size)
 		_putchar(result[i] + '0');
 	}
 	_putchar('\n');
+}
+
+/**
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: 0 on success, 98 on error
+ */
+int main(int argc, char *argv[])
+{
+	if (argc != 3)
+	{
+		print_error_and_exit();
+	}
+
+	if (!is_digit_str(argv[1]) || !is_digit_str(argv[2]))
+	{
+		print_error_and_exit();
+	}
+
+	multiply(argv[1], argv[2]);
+
+	return (0);
 }
