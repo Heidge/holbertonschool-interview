@@ -1,7 +1,7 @@
+#include "mul.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 
 /**
  * print_error_and_exit - prints "Error" and exits with status 98
@@ -31,6 +31,30 @@ int is_digit_str(const char *str)
 		i++;
 	}
 	return (1);
+}
+
+/**
+ * print_result - prints the result of the multiplication
+ * @result: the array containing the result
+ * @size: the size of the result array
+ */
+void print_result(int *result, int size)
+{
+	int i = 0;
+
+	while (i < size && result[i] == 0)
+	{
+		i++;
+	}
+	if (i == size)
+	{
+		_putchar('0');
+	}
+	for (; i < size; i++)
+	{
+		_putchar(result[i] + '0');
+	}
+	_putchar('\n');
 }
 
 /**
@@ -65,30 +89,6 @@ void multiply(const char *num1, const char *num2)
 	print_result(result, len1 + len2);
 
 	free(result);
-}
-
-/**
- * print_result - prints the result of the multiplication
- * @result: the array containing the result
- * @size: the size of the result array
- */
-void print_result(int *result, int size)
-{
-	int i = 0;
-
-	while (i < size && result[i] == 0)
-	{
-		i++;
-	}
-	if (i == size)
-	{
-		_putchar('0');
-	}
-	for (; i < size; i++)
-	{
-		_putchar(result[i] + '0');
-	}
-	_putchar('\n');
 }
 
 /**
